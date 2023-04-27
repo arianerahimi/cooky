@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "ListofUsers";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+
+
+@model List<UsersViewModels>
+<h1>ListofUsers</h1>
+<table class="table table-bordered table-striped">
+    <thead><tr><td>UserName</td><td>firstName</td><td>Lastname</td><td>Email</td><td>Rolename</td><td>Action</td></tr></thead>
+    @{
+        foreach (var item in Model)
+        {
+            
+            <tr>
+                <td>@item.username</td>
+                <td>@item.firstName</td>
+                <td>@item.lastName</td>
+                <td>@item.Email</td>
+                <td>@item.RoleName</td>
+                <td><button class="btn btn-danger">Edit</button></td>
+
+            </tr>
+        }
+    }
+
+</table>
+
+
+@*<script>
+    $(function()
+    {})
+
+function F2(id) {
+        $.post('/Admin/Edit', { id: id }, function (value) {
+            $('#name').val(value.name)
+            $('#englishname').val(value.englishname)
+            $('#price').val(value.price)
+            $('#BrandId').val(value.Brand.name)
+            $('#btnupdate').attr('hidden', false)
+
+
+
+            $('#txtupdate').val(value.id)
+
+
+        })
+    }
+</script>*@
+
+
+
+
+
+

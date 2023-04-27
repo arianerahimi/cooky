@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "EditUsers";
+    Layout = "~/Views/Shared/layoutAdmin.cshtml";
+
+    var roles = ViewData["roles"] as List<IdentityRole>;
+    var roles2 = ViewData["rolesName"] as List<IdentityRole>;
+
+
+}
+<h1>Edit Users</h1>
+@model UsersViewModels
+
+<div class="container">
+    <form asp-controller="Admin" asp-action="UpdateUsers">
+        <div class="row">
+            <div class="col-md-6">
+                <label> نام </label>
+                <input class="form-control" asp-for="firstName" />
+                <input class="form-control" hidden="hidden" asp-for="Roleid" />
+                @*          <span asp-validation-for="firstName"></span>*@
+                @*<span asp-validation-for="name"></span>*@
+                <input class="form-control" hidden="hidden" asp-for="id" />
+            </div>
+            <div class="col-md-6">
+                <label>نام خانوادگی</label>
+                <input class="form-control" asp-for="lastName" />
+                @* <span asp-validation-for="englishname"></span>*@
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label> User Name</label>
+                <input class="form-control" asp-for="username" />
+                @*   <span asp-validation-for="username"></span>*@
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label> Email</label>
+                <input class="form-control" asp-for="Email" />
+                @* <span asp-validation-for="Email"></span>*@
+            </div>
+
+            <div class="col-md-6" >
+                <label> Last Roles</label>
+                <table class="table table-bordered table-striped">
+                    <thead><tr><td>Last Roles</td></tr></thead>
+
+                    <tr>
+
+
+
+                        <td>@Model.RoleName</td>
+                        <input class="form-control" hidden="hidden" value="@Model.RoleName" asp-for="oldRole"/>
+
+
+
+
+                    </tr>
+
+                </table>
+
+
+                <div class="col-md-6">
+
+                    <label>Role</label>
+
+                    <select asp-for="RoleName" class="form-control">
+                        <option>----Select a Role----</option>
+                        @foreach (var item in roles)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+
+        <button class="btn btn-success" >Update</button>
+    </form>
+</div>

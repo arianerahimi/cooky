@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "PurchaseCartManagement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model purchaseCart
+
+<div class="content-wraper bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <form action="#" class="cart-table mt-60">
+                    <div class="table-content table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="plantmore-product-remove">حذف</th>
+                                    <th class="plantmore-product-thumbnail">تصاویر</th>
+                                    <th class="cart-product-name">محصول</th>
+                                    <th class="plantmore-product-price">واحد قیمت</th>
+                                    <th class="plantmore-product-quantity">تعداد</th>
+                                    <th class="plantmore-product-subtotal">جمع</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.PurchaseCartItems)
+                                {
+                                    <tr>
+                                        <td class="plantmore-product-remove">
+                                            <a href="#" id="btnremovefrompurchasecart"
+                                           purchaseitemid="@item.Id"><i class="fa fa-times"></i></a>
+                                        </td>
+                                        <td class="plantmore-product-thumbnail">
+                                            <a href="#">
+                                                <img width="80"
+                                                 src="@($"data:image/jpeg;base64,{Convert.ToBase64String(item.Product.ProductImages[0].img)}")" alt="">
+                                            </a>
+                                        </td>
+                                        <td class="plantmore-product-name"><a href="#">@item.Product.name</a></td>
+                                        <td class="plantmore-product-price"><span class="amount">@($"{item.Product.price:0,0}") تومان</span></td>
+                                        <td class="plantmore-product-quantity">
+                                            <input value="@item.count" type="number" id="txtcount"
+                                               purchaseitemid="@item.Id">
+                                        </td>
+                                        <td class="product-subtotal"><span class="amount"> @($"{item.Product.price:0,0}") تومان</span></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 ml-auto">
+                            <div class="cart-page-total">
+                                <h2>مجموع سبد</h2>
+                                <ul>
+                                    <li>جمع <span id="spanTotalPrice">تومان @ViewData["totalprice"]</span></li>
+                                </ul>
+                                <a href="#">پرداخت هزینه</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(() => {
+        $(txtcount).change(function () {
+            let count = parseInt($(this).val())
+            let purchaseitemid = $(this).attr('purchaseitemid')
+            if (count == 0) {
+                $(this).val(1)
+                return
+            } else {
+                $.post('/customer/customer/ChangeCountPurchaseItem',
+                    { count: count, purchaseitemid: purchaseitemid }, x => {
+                        if (x.status === true) {
+                            $(spanTotalPrice).html(`تومان  ${x.totalprice}`);
+                            $(btn).parents('tr').remove()
+                        }
+                    })
+            }
+        })
+
+        $(btnremovefrompurchasecart).click(function (event) {
+            event.preventDefault()
+            let id = $(this).attr('purchaseitemid')
+            let btn = $(this)
+            $.post('/Customer/Customer/RemoveFromPurchaseCart', { purchaseitemid: id }, x => {
+                if (x.status === true) {
+                    $(spanTotalPrice).html(`تومان  ${x.totalprice}`);
+                    $(btn).parents('tr').remove()
+                }
+            })
+        })
+
+
+    })
+</script>

@@ -1,0 +1,142 @@
+﻿@{
+    ViewData["Title"] = "InsertProductImage";
+    Layout = "~/Views/Shared/layoutAdmin.cshtml";
+    Product product = ViewData["product"] as Product;
+    var img = ViewData["img"] as List<ProductImage>;
+
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+@model ProductViewModel
+<div class="">
+    <div>
+
+
+
+
+
+        <h1>ورود تصویر کالا</h1>
+        <style>
+            form {
+                padding: 20px;
+            }
+
+            label {
+                color: green
+            }
+        </style>
+
+        <div class="container">
+            <form id="insert">
+                @*  <div class="row">
+                <div class="col-md-6">
+                <label> نام فارسی</label>
+                <input class="form-control" asp-for="@product.name" />
+                <input class="form-control" hidden="hidden" asp-for="Id" />
+                <input class="form-control" hidden="hidden" asp-for="title" />
+                <input class="form-control" hidden="hidden" asp-for="ProductId" />
+
+                </div>
+                <div class="col-md-6">
+                <label>نام لاتین</label>
+                <input class="form-control" asp-for="@product.englishname" />
+                </div>
+                </div>*@
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputFile">تصویر کالا</label>
+                            <div class="input-group">
+                              
+
+                            </div>
+                        </div>
+                    </div>
+                    @*  <div class="col-md-6">
+                    <label> عنوان فایل عکس</label>
+                    <input class="form-control" asp-for="title" />
+                    </div>*@
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+                <button class="btn btn-success" id="btnadd"> ثبت تصویر کالا</button>
+            </form>
+        </div>
+
+
+
+
+    </div>
+</div>
+<script>
+
+    $(function () {
+        $('#img').change(function () {
+            $('#Showimg').attr('hidden', false)
+            let file = this.files[0]
+            if (file) {
+                let reader = new FileReader()
+                reader.readAsDataURL(file)
+                reader.onload = (event) => {
+                    $('#Showimg').attr('src', event.target.result)
+                    console.log(event.target.result)
+                }
+            }
+        })
+
+        //let btnAdd = $('#btnAdd')
+        //btnAdd.click(function () {
+        //    $('#insert').validate
+        //        (
+        //            {
+        //                rules:
+        //                {
+
+        //                },
+        //                messages:
+        //                {
+
+        //                },
+        //                submitHandler: () => {
+        //                    let formdata = new FormData()
+
+        //                    let img = $('#img').get(0).files
+        //                    for (var i = 0; i < img.length; i++) {
+        //                        formdata.append("img", img[i])
+        //                    }
+        //                    $.ajax(
+        //                        {
+        //                            url: '/Admin/UpdateProductImageConfirm',
+        //                            type: 'post',
+        //                            data: formdata,
+        //                            dataType: 'json',
+        //                            enctype: 'multipart/form-data',
+        //                            processData: false,
+        //                            contentType: false,
+        //                            success: function (data) {
+        //                                alert(data)
+
+        //                                $('#Showimg').attr('hidden', 'hidden')
+
+        //                            }
+        //                        })
+
+        //                }
+
+        //            }
+
+        //        )
+        //})
+
+</script>

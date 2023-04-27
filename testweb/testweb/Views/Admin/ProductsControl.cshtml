@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "ProductsControl";
+    Layout = "~/Views/Shared/layoutAdmin.cshtml";
+}
+
+<h1>ProductsControl</h1>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+@*@inject UserManager<ApplicationUser> userManager*@
+@*<link href="~/css/stylesheet.css" rel="stylesheet" />
+<link href="~/css/src.css" rel="stylesheet" />
+<script src="~/js/javascript.js"></script>
+*@
+@model List<Product>
+<table class="table table-bordered table-striped">
+    <thead><tr><td>نام</td><td>نام انگلیسی</td><td>تعداد</td><td>قیمت</td><td>توضیحات</td><td>برند</td><td>کنترل</td></tr></thead>
+    @{
+        foreach (var item in Model)
+        {
+
+            <tr>
+                <td>@item.name</td>
+                <td>@item.englishname</td>
+                <td>@item.conunt</td>
+                <td>@item.price</td>
+                <td>@item.descreption</td>
+                <td>@item.Brand.name</td>
+                <td colspan="8">
+                    @foreach (var item2 in item.ProductImages)
+                    {
+                        <a asp-action="ShowImage" asp-controller="Product" asp-route-id="@item2.Id">
+                            <img width="100" height="100" style="border-radius:15px;margin-right:10px" src="@($"data:image/jpeg;base64,{Convert.ToBase64String(@item2.img)}")">
+                        </a>
+                    }
+
+
+                </td>
+
+                <form asp-controller="Admin" asp-route-id="@item.Id" asp-action="DeletebyId">
+                <td><button class="btn btn-danger" onclick="F1(@item.Id)">حذف</button></td>
+                </form>
+                <form asp-controller="Admin" asp-route-id="@item.Id" asp-action="Edit">
+                <td><button class="btn btn-success">ویرایش</button></td>
+                </form>
+            </tr>
+
+        }
+    }
+
+
+
+
+</table>
+
+@*<script>
+    $(function()
+    {})
+
+function F2(id) {
+        $.post('/Admin/Edit', { id: id }, function (value) {
+            $('#name').val(value.name)
+            $('#englishname').val(value.englishname)
+            $('#price').val(value.price)
+            $('#BrandId').val(value.Brand.name)
+            $('#btnupdate').attr('hidden', false)
+
+
+
+            $('#txtupdate').val(value.id)
+
+
+        })
+    }
+</script>*@
+
+
+
+
+
+

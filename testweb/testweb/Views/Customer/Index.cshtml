@@ -1,0 +1,429 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script>
+<script src="~/lib/jquery-validation/dist/additional-methods.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+@model List<Product>
+
+<div class="content-wraper bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 order-2 order-lg-1">
+                <!-- filter-price start -->
+                <div class="filter-price sidebar-categores-box mt-60">
+                    <div class="secton-title">
+                        <h2>قیمت</h2>
+                    </div>
+                    <div class="filter-price-content">
+                        <form action="#" method="post">
+                            <div id="price-slider" class="price-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 13.5714%; width: 57.8571%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 13.5714%;"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 71.4286%;"></span></div>
+                            <div class="filter-price-wapper">
+                                <div class="filter-price-cont">
+                                    <div class="input-type">
+                                        <input type="hidden" id="max-price" value="1050000">
+                                        <span id="max-price-text">1050000 تومان</span>
+                                    </div>
+                                    <span>&nbsp;—&nbsp;</span>
+                                    <div class="input-type">
+                                        <input type="hidden" id="min-price" value="240000">
+                                        <span id="min-price-text">240000 تومان</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- filter-price end -->
+                <!-- categories-box start -->
+                <div class="categories-box sidebar-categores-box">
+                    <div class="secton-title">
+                        <h2>دسته بندی ها</h2>
+                    </div>
+                    <div class="sidebar-categores-inner">
+                        <div class="filter-group">
+                            <a href="#">دسته اول (5)</a>
+                            <a href="#">دسته دوم (8)</a>
+                            <a href="#">دسته سوم (4)</a>
+                            <a href="#">دسته چهارم (4)</a>
+                            <a href="#">دسته پنجم (3)</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- categories-box end -->
+                <!-- color-box start -->
+                <div class="color-box sidebar-categores-box">
+                    <div class="secton-title">
+                        <h2>رنگ</h2>
+                    </div>
+                    <div class="sidebar-categores-inner">
+                        <div class="filter-group">
+                            <a href="#">سبز (5)</a>
+                            <a href="#">صورتی (5)</a>
+                            <a href="#">قرمز (2)</a>
+                            <a href="#">سفید (11)</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- color-box end -->
+                <!-- facture-box start -->
+                <div class="facture-box sidebar-categores-box">
+                    <div class="secton-title">
+                        <h2>سازنده</h2>
+                    </div>
+                    <div class="sidebar-categores-inner">
+                        <div class="filter-group">
+                            <a href="#">سامسونگ (8)</a>
+                            <a href="#">شیائومی (11)</a>
+                            <a href="#">ال جی (10)</a>
+                            <a href="#">سونی (11)</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- facture-box end -->
+                <!-- single-banner start -->
+                <div class="single-banner mt-30 text-center">
+                    <a href="#">
+                        <img alt="" src="img/banner/home-04-5.jpg">
+                    </a>
+                </div>
+                <!-- single-banner start -->
+            </div>
+            <div class="col-lg-9 order-1 order-lg-2">
+                <div class="row">
+                    <div class="col">
+                        <div class="shop-top-bar mt-60">
+                            <div class="shop-bar-inner">
+                                <div class="product-view-mode">
+                                    <!-- shop-item-filter-list start -->
+                                    <ul role="tablist" class="nav shop-item-filter-list">
+                                        <li role="presentation" class="active"><a href="#grid" aria-controls="grid" role="tab" data-toggle="tab" class="active show" aria-selected="true"><i class="fa fa-th"></i></a></li>
+                                        <li role="presentation"><a href="#list" aria-controls="list" role="tab" data-toggle="tab"><i class="fa fa-th-list"></i></a></li>
+                                    </ul>
+                                    <!-- shop-item-filter-list end -->
+                                </div>
+                                <div class="toolbar-amount">
+                                    <span>در حال نمایش 1 تا 9 از 15</span>
+                                </div>
+                            </div>
+                            <div class="product-select-box">
+                                <div class="product-show">
+                                    <p>نمایش:</p>
+                                    <select class="nice-select" name="showing" style="display: none;">
+                                        <option value="1">8</option>
+                                        <option value="2">12</option>
+                                        <option value="3">16</option>
+                                        <option value="4">20</option>
+                                        <option value="5">24</option>
+                                    </select><div class="nice-select" tabindex="0"><span class="current">8</span><ul class="list"><li data-value="1" class="option selected">8</li><li data-value="2" class="option">12</li><li data-value="3" class="option">16</li><li data-value="4" class="option">20</li><li data-value="5" class="option">24</li></ul></div>
+                                </div>
+                                <div class="product-short">
+                                    <p>مرتب سازی:</p>
+                                    <select class="nice-select" name="sortby" style="display: none;">
+                                        <option value="trending">پیش فرض</option>
+                                        <option value="sales">نام صعودی</option>
+                                        <option value="sales">نام نزولی</option>
+                                        <option value="rating">قیمت کم به زیاد</option>
+                                        <option value="date">امتیاز</option>
+                                        <option value="price-asc">مدل صعودی</option>
+                                        <option value="price-asc">مدل نزولی</option>
+                                    </select><div class="nice-select" tabindex="0"><span class="current">پیش فرض</span><ul class="list"><li data-value="trending" class="option selected">پیش فرض</li><li data-value="sales" class="option">نام صعودی</li><li data-value="sales" class="option">نام نزولی</li><li data-value="rating" class="option">قیمت کم به زیاد</li><li data-value="date" class="option">امتیاز</li><li data-value="price-asc" class="option">مدل صعودی</li><li data-value="price-asc" class="option">مدل نزولی</li></ul></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="shop-products-wrapper">
+
+                    <div class="tab-content">
+
+                        <div id="grid" class="tab-pane fade active show" role="tabpanel">
+                            <div class="shop-product-wrap box-module">
+
+                                <div class="row">
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <div class="col-lg-4 col-md-4 col-sm-6">
+                                            <!-- sinle-product-item start -->
+                                            <div class="sinle-product-item mb-20">
+                                                <div class="product-thumb">
+                                                    @foreach (var item2 in item.ProductImages)
+                                                    {
+                                                        <a href="single-product.html">
+                                                            <img alt="" src="@($"data:image/jpeg;base64,{Convert.ToBase64String(item2.img)}")" class="primary-image">
+                                                            @* <img id="showimg" width="100" height="100" class="primary-image">*@
+                                                        </a>
+                                                    }
+
+
+                                                    <div class="action-links">
+                                                        <a href="#" class="action-btn btn-wishlist"><i class="ion-android-favorite-outline"></i></a>
+                                                        <a href="#" class="action-btn btn-compare"><i class="ion-arrow-swap"></i></a>
+                                                        <a href="#" data-target="#exampleModalCenter" data-toggle="modal" class="action-btn btn-quickview"><i class="ion ion-ios-eye"></i></a>
+                                                    </div>
+
+                                                    <div class="add-to-cart">
+                                                        <a href="#" class="btn-cart" id="btnaddToCart" productid="@item.Id"><span> افزودن به سبد </span></a>
+                                                    </div>
+
+                                                </div>
+                                                <div class="product-info">
+                                                    <div class="rating-box">
+                                                        <ul class="rating d-flex">
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-android-star-outline"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                    <h4 class="product-name"><a href="single-product.html">@item.name</a></h4>
+                                                    <div class="price-box">
+                                                        <span class="new-price">@($"{item.price:0,0}") تومان</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- sinle-product-item end -->
+                                        </div>
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id="list" class="tab-pane fade" role="tabpanel">
+                            <div class="shop-product-list-wrap box-module">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="row product-layout-list">
+                                            <div class="col-lg-5 col-md-5">
+                                                <!-- sinle-product-item start -->
+                                                <div class="sinle-product-item">
+                                                    <div class="product-thumb">
+                                                        <a href="single-product.html">
+                                                            <img alt="" src="~/layout/img/product/10.jpg" class="primary-image">
+                                                            <img alt="" src="~/layout/img/product/9.jpg" class="secondary-image">
+                                                        </a>
+                                                        <div class="action-links">
+                                                            <a href="#" class="action-btn btn-wishlist"><i class="ion-android-favorite-outline"></i></a>
+                                                            <a href="#" class="action-btn btn-compare"><i class="ion-arrow-swap"></i></a>
+                                                            <a href="#" data-target="#exampleModalCenter" data-toggle="modal" class="action-btn btn-quickview"><i class="ion ion-ios-eye"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- sinle-product-item end -->
+                                            </div>
+                                            <div class="col-lg-7 col-md-7">
+                                                <div class="product-info">
+                                                    <div class="rating-box">
+                                                        <ul class="rating d-flex">
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-android-star-outline"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                    <h4 class="product-name"><a href="single-product.html">لورم ایپسوم متن</a></h4>
+                                                    <div class="price-box">
+                                                        <span class="new-price">$224.00</span>
+                                                    </div>
+                                                    <p class="product-des">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و</p>
+                                                    <button class="list-btn-cart"><span>افزودن به سبد</span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row product-layout-list">
+                                            <div class="col-lg-5 col-md-5">
+                                                <!-- sinle-product-item start -->
+                                                <div class="sinle-product-item">
+                                                    <div class="product-thumb">
+                                                        <a href="single-product.html">
+                                                            <img alt="" src="~/layout/img/product/16.jpg" class="primary-image">
+                                                        </a>
+                                                        <div class="action-links">
+                                                            <a href="#" class="action-btn btn-wishlist"><i class="ion-android-favorite-outline"></i></a>
+                                                            <a href="#" class="action-btn btn-compare"><i class="ion-arrow-swap"></i></a>
+                                                            <a href="#" data-target="#exampleModalCenter" data-toggle="modal" class="action-btn btn-quickview"><i class="ion ion-ios-eye"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- sinle-product-item end -->
+                                            </div>
+                                            <div class="col-lg-7 col-md-7">
+                                                <div class="product-info">
+                                                    <div class="rating-box">
+                                                        <ul class="rating d-flex">
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-android-star-outline"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                    <h4 class="product-name"><a href="single-product.html">لورم ایپسوم متن ساختگی</a></h4>
+                                                    <div class="price-box">
+                                                        <span class="new-price">$59.00</span>
+                                                    </div>
+                                                    <p class="product-des">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و</p>
+                                                    <button class="list-btn-cart"><span>افزودن به سبد</span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row product-layout-list">
+                                            <div class="col-lg-5 col-md-5">
+                                                <!-- sinle-product-item start -->
+                                                <div class="sinle-product-item">
+                                                    <div class="product-thumb">
+                                                        <a href="single-product.html">
+                                                            <img alt="" src="~/layout/img/product/23.jpg" class="primary-image">
+                                                            <img alt="" src="~/layout/img/product/22.jpg" class="secondary-image">
+                                                        </a>
+                                                        <div class="action-links">
+                                                            <a href="#" class="action-btn btn-wishlist"><i class="ion-android-favorite-outline"></i></a>
+                                                            <a href="#" class="action-btn btn-compare"><i class="ion-arrow-swap"></i></a>
+                                                            <a href="#" data-target="#exampleModalCenter" data-toggle="modal" class="action-btn btn-quickview"><i class="ion ion-ios-eye"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- sinle-product-item end -->
+                                            </div>
+                                            <div class="col-lg-7 col-md-7">
+                                                <div class="product-info">
+                                                    <div class="rating-box">
+                                                        <ul class="rating d-flex">
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-android-star-outline"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                    <h4 class="product-name"><a href="single-product.html">لورم ایپسوم متن ساختگی</a></h4>
+                                                    <div class="price-box">
+                                                        <span class="new-price">$59.00</span>
+                                                    </div>
+                                                    <p class="product-des">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و</p>
+                                                    <button class="list-btn-cart"><span>افزودن به سبد</span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row product-layout-list">
+                                            <div class="col-lg-5 col-md-5">
+                                                <!-- sinle-product-item start -->
+                                                <div class="sinle-product-item">
+                                                    <div class="product-thumb">
+                                                        <a href="single-product.html">
+                                                            <img alt="" src="~/layout/img/product/27.jpg" class="primary-image">
+                                                        </a>
+                                                        <div class="action-links">
+                                                            <a href="#" class="action-btn btn-wishlist"><i class="ion-android-favorite-outline"></i></a>
+                                                            <a href="#" class="action-btn btn-compare"><i class="ion-arrow-swap"></i></a>
+                                                            <a href="#" data-target="#exampleModalCenter" data-toggle="modal" class="action-btn btn-quickview"><i class="ion ion-ios-eye"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- sinle-product-item end -->
+                                            </div>
+                                            <div class="col-lg-7 col-md-7">
+                                                <div class="product-info">
+                                                    <div class="rating-box">
+                                                        <ul class="rating d-flex">
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-android-star-outline"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                    <h4 class="product-name"><a href="single-product.html">لورم ایپسوم متن ساختگی</a></h4>
+                                                    <div class="price-box">
+                                                        <span class="new-price">$59.00</span>
+                                                    </div>
+                                                    <p class="product-des">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و</p>
+                                                    <button class="list-btn-cart"><span>افزودن به سبد</span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row product-layout-list">
+                                            <div class="col-lg-5 col-md-5">
+                                                <!-- sinle-product-item start -->
+                                                <div class="sinle-product-item">
+                                                    <div class="product-thumb">
+                                                        <a href="single-product.html">
+                                                            <img alt="" src="~/layout/img/product/28.jpg" class="primary-image">
+                                                        </a>
+                                                        <div class="action-links">
+                                                            <a href="#" class="action-btn btn-wishlist"><i class="ion-android-favorite-outline"></i></a>
+                                                            <a href="#" class="action-btn btn-compare"><i class="ion-arrow-swap"></i></a>
+                                                            <a href="#" data-target="#exampleModalCenter" data-toggle="modal" class="action-btn btn-quickview"><i class="ion ion-ios-eye"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- sinle-product-item end -->
+                                            </div>
+                                            <div class="col-lg-7 col-md-7">
+                                                <div class="product-info">
+                                                    <div class="rating-box">
+                                                        <ul class="rating d-flex">
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-ios-star"></i></li>
+                                                            <li><i class="ion-android-star-outline"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                    <h4 class="product-name"><a href="single-product.html">لورم ایپسوم متن ساختگی</a></h4>
+                                                    <div class="price-box">
+                                                        <span class="new-price">$59.00</span>
+                                                    </div>
+                                                    <p class="product-des">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و</p>
+                                                    <button class="list-btn-cart"><span>افزودن به سبد</span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(function () {
+        alert('JQUERY')
+        $(btnaddToCart).click(function () {
+            event.preventDefault()
+            let productid = $('#productid')
+            let productid = $(this).attr('productid')
+            alert('hi')
+            $.post('/Customer/AddtoPurchaseCart', { productid: productid }, function (value) {
+                if (value == true) {
+                    alert("hiiii")
+                }
+            })
+        })
+    })
+</script>

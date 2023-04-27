@@ -1,0 +1,99 @@
+﻿@{
+    ViewData["Title"] = "InsertProduct";
+    Layout = "~/Views/Shared/layoutAdmin.cshtml";
+    var brands = ViewData["brands"] as List<Brand>;
+}
+
+@model ProductViewModel
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<h1>ورود کالا</h1>
+<style>
+    form {
+        padding: 20px;
+    }
+
+    label {
+        color: green
+    }
+</style>
+<div class="container">
+    <form asp-area="admin" asp-controller="product" asp-action="InsertProductConfirm">
+        <div class="row">
+            <div class="col-md-6">
+                <label> نام فارسی</label>
+                <input class="form-control" asp-for="name" />
+                <span asp-validation-for="name"></span>
+            </div>
+            <div class="col-md-6">
+                <label>نام لاتین</label>
+                <input class="form-control" asp-for="englishname" />
+                <span asp-validation-for="englishname"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label> قیمت</label>
+                <input class="form-control" asp-for="price" />
+                <span asp-validation-for="price"></span>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label> تعداد</label>
+                <input class="form-control" asp-for="count" />
+                <span asp-validation-for="count"></span>
+            </div>
+            <div class="col-md-6">
+                <label>برند</label>
+                <select asp-for="BrandId" class="form-control">
+                    <option></option>
+                    @foreach (var item in brands)
+                    {
+                        <option value="@item.Id">@item.name</option>
+                    }
+                </select>
+            </div>
+        </div>
+       
+        <div class="form-group">
+            <label>توضیحات</label>
+            <textarea asp-for="descreption" class="form-control" rows="3"></textarea>
+        </div>
+        <button class="btn btn-success">ثبت</button>
+    </form>
+</div>
+
+
+<script>
+    $(() => {
+        $(ddlCategoriesFirst).change(function (event) {
+            let catrgoryIdFirst = $(event.target).val()
+
+            //Jquery ======AJAX=========> C#, Action
+            //       <======JSON====
+            $.get('/admin/product/GetCategories', { categoryId: catrgoryIdFirst }, value => {
+
+                //alert( JSON.stringify(value) )
+                $(ddlCategoriesSecond).html('<option></option>')
+                $(value).each((index, x) => {
+                    $(ddlCategoriesSecond).append(`<option value='${x.id}'>${x.categoryName}</option>`)
+                })
+            })
+        })
+        $(ddlCategoriesSecond).change(function (event) {
+            let catrgoryIdSecond = $(event.target).val()
+            $.get('/admin/product/GetCategories', { categoryId: catrgoryIdSecond }, value => {
+                $(ddlCategoriesThird).html('<option></option>')
+                $(value).each((index, x) => {
+                    $(ddlCategoriesThird).append(`<option value='${x.id}'>${x.categoryName}</option>`)
+                })
+            })
+        })
+    })
+</script>
+
